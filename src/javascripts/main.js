@@ -5,6 +5,7 @@ const eventListener = () => {
   $('body').on('click', '#joke-btn', () => {
     $('#joke-line').html('');
     $('#punch-line').html('');
+    $('#punch-btn').show();
     JokeData.getJoke().then((response) => {
       if (response.length) {
         $('#joke-line').html(`${response[2]}`);
@@ -16,18 +17,13 @@ const eventListener = () => {
     JokeData.getJoke().then((response) => {
       if (response.length) {
         $('#punch-line').html(`${response[3]}`);
+        $('#punch-btn').hide();
       }
     });
   });
 };
 
 const init = () => {
-  // JokeData.getJoke().then((response) => {
-  //   if (response.length) {
-  //     console.warn(response);
-  //   }
-  // });
-
   $('#app').append('<div id="joke-card"></div>');
   $('#joke-card').append(`<div class="card">
   <div class="card-header">
