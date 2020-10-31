@@ -5,19 +5,28 @@ const eventListener = () => {
   $('body').on('click', '#joke-btn', () => {
     $('#joke-line').html('');
     $('#punch-line').html('');
+    JokeData.getJoke().then((response) => {
+      if (response.length) {
+        $('#joke-line').html(`${response[2]}`);
+      }
+    });
   });
 
-  $('body').on('click', '#joke-btn', () => {
-
+  $('body').on('click', '#punch-btn', () => {
+    JokeData.getJoke().then((response) => {
+      if (response.length) {
+        $('#punch-line').html(`${response[3]}`);
+      }
+    });
   });
 };
 
 const init = () => {
-  JokeData.getJoke().then((response) => {
-    if (response.length) {
-      console.warn(response);
-    }
-  });
+  // JokeData.getJoke().then((response) => {
+  //   if (response.length) {
+  //     console.warn(response);
+  //   }
+  // });
 
   $('#app').append('<div id="joke-card"></div>');
   $('#joke-card').append(`<div class="card">
@@ -29,7 +38,7 @@ const init = () => {
     <h5 class="card-title">Punchline</h5>
     <button type="button" id="joke-btn" class="btn btn-primary">Get Joke</button>
     <p id="joke-line">Joke</p>
-    <button type="button" class="btn btn-primary">Get Punchline</button>
+    <button type="button" id="punch-btn" class="btn btn-primary">Get Punchline</button>
     <p id="punch-line">Punchline</p>
   </div>
 </div>`);
