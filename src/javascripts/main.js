@@ -9,18 +9,19 @@ const eventListener = () => {
     JokeData.getJoke().then((response) => {
       if (response.length) {
         $('#joke-line').html(`${response[2]}`);
+        let punchline = response[3];
+        $('body').on('click', '#punch-btn', () => {
+          // JokeData.getJoke().then((response) => {
+          //   if (response.length) {
+              $('#punch-line').html(`${punchline}`);
+              $('#punch-btn').hide();
+            // }
+          });
       }
     });
   });
 
-  $('body').on('click', '#punch-btn', () => {
-    JokeData.getJoke().then((response) => {
-      if (response.length) {
-        $('#punch-line').html(`${response[3]}`);
-        $('#punch-btn').hide();
-      }
-    });
-  });
+
 };
 
 const init = () => {
